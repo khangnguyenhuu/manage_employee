@@ -1,0 +1,53 @@
+<head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='./css/main.css') }}">
+</head>
+{% extends "base.html" %}
+{% block body %}
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100">
+                <table>
+                    <thead>
+                        <tr class="table100-head">
+                            <th class="column1">Name</th>
+                            <th class="column2">Email</th>
+                            <th class="column3">Phone</th>
+                            <th class="column4">Time in</th>
+                            <th class="column5">Time out</th>
+                            <td class="column6"> 
+                                <a href="{{ url_for('add') }}"">
+                                    <button class="btn-add" style="color: white; height: 50px; width: 50px; border: 2px;">ADD</button>
+                                </a>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for employee in employees %}
+                            <tr>
+                                <td class="column1">{{ employee.name }}</td>
+                                <td class="column2">{{ employee.phone }}</td>
+                                <td class="column3">{{ employee.email }}</td>
+                                <td class="column4">{{ employee.time_in }}</td>
+                                <td class="column5">{{ employee.time_out }}</td>
+                                <td class="column6">
+                                    <form action="/edit/{{ employee.id }}" method="get">
+                                        <button>
+                                            <i class="fa fa-pencil" style="font-size: 25px;"></i>
+                                        </button>
+                                    </form>
+                                    <form action="/delete/{{ employee.id }}" method="post">
+                                        <button>
+                                            <i class="fa fa-trash" style="font-size: 25px;"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

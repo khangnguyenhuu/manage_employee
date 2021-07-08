@@ -1,0 +1,35 @@
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='./css/add_new.css') }}">
+</head>
+{% extends "base.html" %}
+{% block body %}
+{% if employee != NULL%}
+    <div class="add-new-employee">
+        <form action="{{ request.path }}" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" placeholder="{{employee.name}}"><br>
+            <label for="phone">Phone:</label><br>
+            <input type="text" id="phone" name="phone" placeholder="{{employee.phone}}"><br>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email" placeholder="{{employee.email}}"><br>
+            <button><input type="submit" value="Submit"></button> 
+        </form>
+    </div>
+{% else %}
+    <div class="add-new-employee">
+        <form action="{{ request.path }}" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="phone">Phone:</label><br>
+            <input type="text" id="phone" name="phone"><br>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br>
+            <button> 
+                <input type="submit" value="Submit">
+            </button>
+        </form>
+    </div>
+{% endif %}
+{% endblock body %}
