@@ -1,4 +1,4 @@
-<h1 align="center">LP_OCR</h1>
+<h1 align="center">MANAGE EMPLOYEE</h1>
 
 <br>
 
