@@ -13,17 +13,46 @@
                             <th class="column1">Name</th>
                             <th class="column2">Email</th>
                             <th class="column3">Phone</th>
-                            <th class="column4">Time in</th>
-                            <th class="column5">Time out</th>
-                            <td class="column6"> 
-                                <a href="{{ url_for('add') }}"">
+                            <th class="column4">
+                                <form action="http://127.0.0.1:5000/home" method="post">
+                                    <input type="hidden" name="sort_column" value="time_in">
+                                    <div>
+                                        <div class="button-wapper" style="display:flex; flex-direction: column;">
+                                            <div>
+                                                <button type="submit" style="font-size:24px; color:white;" name="sort_method" value="asc"><i class="fa fa-sort-asc"></i></button>
+                                            </div>
+                                            Time in
+                                            <div>
+                                                <button type="submit" name="sort_method" value="desc" style="font-size:24px; color:white; "><i class="fa fa-sort-desc"></i></button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </th>
+                            <th class="column4">
+                                <form action="http://127.0.0.1:5000/home" method="post">
+                                    <input type="hidden" name="sort_column" value="time_out">
+                                    <div>
+                                        <div class="button-wapper" style="display:flex; flex-direction: column;">
+                                            <div>
+                                                <button type="submit" style="font-size:24px; color:white;" name="sort_method" value="asc"><i class="fa fa-sort-asc"></i></button>
+                                            </div>
+                                            Time out
+                                            <div>
+                                                <button type="submit" name="sort_method" value="desc" style="font-size:24px; color:white; "><i class="fa fa-sort-desc"></i></button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </th>                            <td class="column6"> 
+                                <a href="{{ url_for('add') }}">
                                     <button class="btn-add" style="color: white; height: 50px; width: 50px; border: 2px;">ADD</button>
                                 </a>
                             </td>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for employee in employees %}
+                        {% for employee in employees.items %}
                             <tr>
                                 <td class="column1">{{ employee.name }}</td>
                                 <td class="column2">{{ employee.phone }}</td>
@@ -46,6 +75,19 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                <div style="text-align: center; font-size: 30px; border: 1px;">
+                    {% for page_num in employees.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2  ) %}
+                        {% if page_num %}
+                            {% if employees.page == page_num %}
+                                <a class="btn btn-outline mb-4" style="background-color:violet;" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+                            {% else %}
+                                <a class="btn btn-outline-info mb-4"  href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+                            {% endif %}
+                        {% else %}
+                        ...
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

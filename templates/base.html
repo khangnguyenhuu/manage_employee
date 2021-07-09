@@ -20,15 +20,19 @@
     <div class="head-container">
         <div class="wrapper-head">
             <div class="search">
-                <form action="http://127.0.0.1:5000/search" method="post">
-                    <select class="search-type" name="search_type">
-                        <option value="name">Name</option>
-                        <option value="phone">Phone</option>
-                        <option value="email">Email</option>
-                    </select>
+                <form class="form-container" action="http://127.0.0.1:5000/search" method="post">
+                    <div>
+                        <select class="search-type" name="search_type">
+                            <option value="name">Name</option>
+                            <option value="phone">Phone</option>
+                            <option value="email">Email</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input class="search-box" type="text" name="search_value" placeholder="Search.....">
+                    </div>
                 </form>
-                <input class="search-box" type="text" name="search_value" placeholder="Search.....">
-                <a href="http://127.0.0.1:5000/home" ">
+                <a href="http://127.0.0.1:5000/home">
                     <button style="color: violet; font-size: 30px; text-align: center;">
                         Home
                     </button>
