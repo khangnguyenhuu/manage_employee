@@ -32,8 +32,11 @@ class Employee(db.Model):
 @app.route('/')
 @app.route('/home', methods=["POST", "GET"])
 def home():
+    # do sorting
     if request.method == "POST":
+        # sort_method is desc or asc
         sort_method = request.form['sort_method']
+        # sort column is time_in or time_out
         sort_column = request.form['sort_column']
         if (sort_column == "time_in"):
             if (sort_method == "asc"):
